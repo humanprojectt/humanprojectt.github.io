@@ -1,0 +1,98 @@
+@font-face {
+  font-family: "Archivo";
+  src: url("/fonts/archivo.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+
+:root {
+  --black: #090909;
+  --graphite: #292929;
+  --steel: #858585;
+  --silver: #e8e8e8;
+  --white: #ffffff;
+  /* Provisional: Yera has not approved the lime accent yet. */
+  --accent: #d4ff45;
+  --metal: linear-gradient(100deg, #8d8d8d 0%, var(--white) 42%, #9a9a9a 70%, var(--silver) 100%);
+  --glow: rgb(133 133 133 / 0.26);
+  --target: 2.75rem;
+  /* Side margin that grows with the screen, then centers an 84rem column. */
+  --gutter: max(clamp(1.5rem, 6.8vw, 6rem), calc((100vw - 84rem) / 2));
+  --section: clamp(5rem, 13vw, 11rem);
+  --fast: 160ms;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--black);
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--silver);
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.3rem);
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Shared by every section */
+.section {
+  padding: var(--section) var(--gutter);
+  border-top: 1px solid var(--graphite);
+}
+
+h2 {
+  max-width: 18ch;
+  color: var(--white);
+  font-size: clamp(2.5rem, 7vw, 6.25rem);
+  font-stretch: 72%;
+  font-weight: 800;
+  line-height: 1;
+  text-wrap: balance;
+  word-spacing: 0.06em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}

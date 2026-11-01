@@ -1,0 +1,71 @@
+---
+import "../styles/global.css";
+import Footer from "../components/layout/Footer.astro";
+import Header from "../components/layout/Header.astro";
+import { site } from "../content/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Pages other than the home page: simple header and links back to home. */
+  subpage?: boolean;
+}
+
+const { title = site.title, description = site.description, subpage = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {site.preview && <meta name="robots" content="noindex" />}
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content={site.themeColor} />
+    <link rel="canonical" href={new URL(Astro.url.pathname.replace(/index\.html$/, ""), Astro.site)} />
+    <link rel="icon" href="data:," />
+    <link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+    {
+      site.preview && (
+        <p class="notice" data-pending="aviso de vista previa">
+          Vista previa. Textos provisionales pendientes de aprobación de Yera.
+        </p>
+      )
+    }
+    <Header subpage={subpage} />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer subpage={subpage} />
+  </body>
+</html>
+
+<style>
+  .skip {
+    position: absolute;
+    left: var(--gutter);
+    top: -4rem;
+    z-index: 3;
+    padding: 0.6rem 1rem;
+    background: var(--accent);
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  .skip:focus {
+    top: 0.75rem;
+  }
+
+  .notice {
+    padding: 0.55rem var(--gutter);
+    background: var(--accent);
+    color: var(--black);
+    font-size: 0.82rem;
+    font-weight: 650;
+    line-height: 1.35;
+  }
+</style>

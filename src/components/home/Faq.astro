@@ -1,0 +1,79 @@
+---
+import { faq } from "../../content/home";
+---
+
+<section class="section faq-layout" id="preguntas" aria-labelledby="preguntas-titulo">
+  <h2 id="preguntas-titulo">{faq.title}</h2>
+  <div class="faq">
+    {
+      faq.items.map((item) => (
+        <details>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .faq {
+    margin-top: clamp(2.5rem, 6vw, 4.5rem);
+    border-top: 1px solid var(--graphite);
+  }
+
+  details {
+    border-bottom: 1px solid var(--graphite);
+  }
+
+  summary {
+    position: relative;
+    padding: 1.35rem 2.2rem 1.35rem 0;
+    color: var(--white);
+    cursor: pointer;
+    font-weight: 650;
+    line-height: 1.3;
+    list-style: none;
+    transition: color var(--fast) ease;
+  }
+
+  summary:hover {
+    color: var(--accent);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    position: absolute;
+    right: 0;
+    top: 1.15rem;
+    color: var(--steel);
+    content: "+" / "";
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  details[open] summary::after {
+    content: "\2212" / "";
+  }
+
+  details p {
+    max-width: 56ch;
+    padding-bottom: 1.5rem;
+  }
+
+  @media (min-width: 64rem) {
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      align-items: start;
+      gap: 3rem;
+    }
+
+    .faq {
+      margin-top: 0;
+    }
+  }
+</style>

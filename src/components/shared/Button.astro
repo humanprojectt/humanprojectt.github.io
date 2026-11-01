@@ -1,0 +1,71 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+  /** primary: the one lime action of a view. quiet: secondary. inverse: on the light band. */
+  variant?: "primary" | "quiet" | "inverse";
+}
+
+const { variant = "primary", class: className, ...attrs } = Astro.props;
+---
+
+<a class:list={["button", `button-${variant}`, className]} {...attrs}><slot /></a>
+
+<style>
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--target);
+    padding: 0.95em 1.5em;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: var(--black);
+    font-weight: 750;
+    line-height: 1.1;
+    text-decoration: none;
+    transition:
+      background-color var(--fast) ease,
+      color var(--fast) ease,
+      border-color var(--fast) ease;
+  }
+
+  .button:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  .button:active {
+    border-color: var(--white);
+    color: var(--white);
+  }
+
+  .button-quiet {
+    padding: 0.5em 1em;
+    border-color: var(--steel);
+    background: transparent;
+    color: var(--white);
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+
+  .button-quiet:hover {
+    border-color: var(--accent);
+  }
+
+  .button-inverse {
+    border-color: var(--black);
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .button-inverse:hover {
+    background: transparent;
+    color: var(--black);
+  }
+
+  .button-inverse:active {
+    border-color: var(--graphite);
+    color: var(--graphite);
+  }
+</style>

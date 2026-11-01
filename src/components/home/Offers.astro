@@ -1,0 +1,113 @@
+---
+import Button from "../shared/Button.astro";
+import { offers, offersSection, statusLabels } from "../../content/offers";
+import { contactHref, site } from "../../content/site";
+---
+
+<section class="section" id="ofertas" aria-labelledby="ofertas-titulo">
+  <h2 id="ofertas-titulo">{offersSection.title}</h2>
+  <div class="offers">
+    {
+      offers.map((offer, index) => (
+        <article class:list={["offer", { "offer-lead": index === 0 }]} id={`oferta-${offer.id}`}>
+          <p class:list={["status", { "status-open": offer.status === "available" }]}>
+            {statusLabels[offer.status]}
+          </p>
+          <h3>{offer.title}</h3>
+          <p class="description">{offer.description}</p>
+          {offer.items && (
+            <ul>
+              {offer.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
+          {offer.status === "available" && (
+            <Button class="offer-action" href={contactHref()}>
+              {site.contact.label}
+            </Button>
+          )}
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .offers {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    margin-top: clamp(3rem, 7vw, 5.5rem);
+    border: 1px solid var(--graphite);
+    background: var(--graphite);
+  }
+
+  .offer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: clamp(1.75rem, 3.5vw, 3rem);
+    background: var(--black);
+  }
+
+  h3 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+    color: var(--white);
+    font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+    font-stretch: 75%;
+    font-weight: 800;
+    line-height: 1.04;
+  }
+
+  .offer-lead h3 {
+    font-size: clamp(2.5rem, 5.6vw, 5.25rem);
+    line-height: 1;
+  }
+
+  .offer-lead .description {
+    max-width: 34ch;
+    font-size: clamp(1.15rem, 1rem + 0.7vw, 1.55rem);
+    line-height: 1.32;
+  }
+
+  /* Plain text on purpose: a boxed label would read as a button. */
+  .status {
+    color: var(--steel);
+    font-size: 0.82rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .status-open {
+    color: var(--accent);
+  }
+
+  li {
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--graphite);
+  }
+
+  .offer :global(.offer-action) {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+
+  @media (min-width: 64rem) {
+    .offers {
+      grid-template-columns: 7fr 5fr;
+      grid-template-rows: auto auto;
+    }
+
+    .offer-lead {
+      grid-row: span 2;
+      justify-content: center;
+    }
+
+    .offer-lead :global(.offer-action) {
+      margin-top: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { legal } from "../content/legal";
+import { site } from "../content/site";
+
+const ownerMissing = legal.owner.some((field) => field.value === null);
+---
+
+<BaseLayout title={`${legal.title} · ${site.name}`} subpage>
+  <article class="legal">
+    <h1>{legal.title}</h1>
+    {
+      legal.needsReview && (
+        <p class="fill" data-pending="revisión legal por el titular">
+          {legal.reviewNote}
+        </p>
+      )
+    }
+
+    <h2>Titular de la web</h2>
+    <dl data-pending={ownerMissing ? "datos del titular (LSSI-CE, art. 10)" : undefined}>
+      {
+        legal.owner.map((field) => (
+          <>
+            <dt>{field.label}</dt>
+            <dd class:list={{ fill: field.value === null }}>{field.value ?? "Pendiente"}</dd>
+          </>
+        ))
+      }
+    </dl>
+
+    {
+      legal.sections.map((section) => (
+        <>
+          <h2>{section.title}</h2>
+          <p>{section.text}</p>
+        </>
+      ))
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .legal {
+    padding: clamp(3rem, 8vw, 6rem) var(--gutter) var(--section);
+  }
+
+  .legal > * {
+    max-width: 46rem;
+  }
+
+  h1 {
+    color: var(--white);
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    font-stretch: 68%;
+    font-weight: 800;
+    line-height: 1;
+    word-spacing: 0.07em;
+  }
+
+  h2 {
+    margin-top: 3rem;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+  }
+
+  p,
+  dl {
+    margin-top: 1rem;
+  }
+
+  dt {
+    margin-top: 1rem;
+    color: var(--steel);
+    font-size: 0.88rem;
+  }
+
+  .fill {
+    color: var(--accent);
+  }
+</style>

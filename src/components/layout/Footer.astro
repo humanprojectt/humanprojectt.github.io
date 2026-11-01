@@ -1,0 +1,44 @@
+---
+import { site } from "../../content/site";
+
+interface Props {
+  subpage?: boolean;
+}
+
+const { subpage = false } = Astro.props;
+---
+
+<footer class="site-footer">
+  <span>{site.name}</span>
+  {
+    subpage ? (
+      <a href="/">Volver al inicio</a>
+    ) : (
+      <a href="/aviso-legal.html">Aviso legal y privacidad</a>
+    )
+  }
+</footer>
+
+<style>
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 2rem;
+    padding: 1.75rem var(--gutter);
+    color: var(--steel);
+    font-size: 0.88rem;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target);
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover {
+    color: var(--white);
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import { problem } from "../../content/home";
+---
+
+<section class="section split" aria-labelledby="problema-titulo">
+  <h2 id="problema-titulo">{problem.title}</h2>
+  <p class="lede">{problem.text}</p>
+</section>
+
+<style>
+  .lede {
+    max-width: 34ch;
+    margin-top: 2rem;
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.85rem);
+    line-height: 1.32;
+  }
+
+  @media (min-width: 64rem) {
+    .split {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      align-items: end;
+      gap: 3rem;
+    }
+
+    .lede {
+      margin-top: 0;
+    }
+  }
+</style>

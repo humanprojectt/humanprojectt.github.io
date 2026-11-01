@@ -1,0 +1,22 @@
+---
+import { about } from "../../content/home";
+---
+
+<section class="section offset" id="yera" aria-labelledby="yera-titulo">
+  <h2 id="yera-titulo">{about.title}</h2>
+  <p class="about-text" data-pending={about.pending ?? undefined}>{about.text}</p>
+</section>
+
+<style>
+  .about-text {
+    max-width: 44ch;
+    margin-top: 2rem;
+  }
+
+  /* Pushed off the left edge to break the rhythm */
+  @media (min-width: 64rem) {
+    .offset {
+      padding-left: calc(var(--gutter) + (100vw - 2 * var(--gutter)) * 0.4);
+    }
+  }
+</style>

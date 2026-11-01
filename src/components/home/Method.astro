@@ -1,0 +1,53 @@
+---
+import { method } from "../../content/home";
+---
+
+<section class="section" id="metodo" aria-labelledby="metodo-titulo">
+  <h2 id="metodo-titulo">{method.title}</h2>
+  <ol class="steps">
+    {
+      method.steps.map((step) => (
+        <li class="step">
+          <span class="step-name">{step}</span>
+        </li>
+      ))
+    }
+  </ol>
+  <p class="pillars">{method.text}</p>
+</section>
+
+<style>
+  .steps {
+    margin-top: clamp(3rem, 7vw, 6rem);
+    border-top: 1px solid var(--graphite);
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--graphite);
+  }
+
+  .step:not(:last-child)::after {
+    color: var(--steel);
+    content: "\2192" / "";
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
+    line-height: 1;
+  }
+
+  .step-name {
+    color: var(--white);
+    font-size: clamp(2.2rem, 7.5vw, 6.5rem);
+    font-stretch: 68%;
+    font-weight: 800;
+    line-height: 1.05;
+  }
+
+  .pillars {
+    max-width: 46ch;
+    margin-top: 2.5rem;
+  }
+</style>
