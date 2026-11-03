@@ -11,8 +11,16 @@ const { subpage = false } = Astro.props;
 ---
 
 <header class="site-header">
-  {/* Text wordmark until the original logo file arrives. Do not redraw the logo. */}
-  <a class="brand" href={subpage ? "/" : "#contenido"}>{site.name}</a>
+  <a class="brand" href={subpage ? "/" : "#contenido"}>
+    <img
+      src={site.logo.mark}
+      alt=""
+      width="146"
+      height="96"
+      data-pending={site.logo.approved ? undefined : "logo sin validar por Yera"}
+    />
+    <span class="brand-name">{site.name}</span>
+  </a>
   {
     !subpage && (
       <nav class="site-nav" aria-label="Principal">
@@ -43,6 +51,7 @@ const { subpage = false } = Astro.props;
   .brand {
     display: inline-flex;
     align-items: center;
+    gap: 0.6rem;
     min-height: var(--target);
     color: var(--white);
     font-size: 0.95rem;
@@ -52,6 +61,26 @@ const { subpage = false } = Astro.props;
     text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;
+  }
+
+  .brand img {
+    width: auto;
+    height: 2rem;
+    /* The file has a pure black background; lighten lets the page black show through. */
+    mix-blend-mode: lighten;
+  }
+
+  /* On narrow screens the mark alone keeps the contact button on the same line.
+     The name stays in the accessible tree as the link text. */
+  @media (max-width: 29.99rem) {
+    .brand-name {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
   }
 
   .site-nav {

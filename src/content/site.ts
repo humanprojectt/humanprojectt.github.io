@@ -10,6 +10,13 @@ export const site = {
   // true shows the preview notice and asks search engines not to index the site.
   preview: true,
 
+  logo: {
+    // HP mark cropped from Yera's original logo file. Never redraw it.
+    mark: "/brand/hp-mark.webp",
+    // Yera supplied the file but has not approved it as final. While false, publishing is blocked.
+    approved: false,
+  },
+
   contact: {
     label: "Hablar con Yera",
     // Where every contact button leads, for example an Instagram profile.

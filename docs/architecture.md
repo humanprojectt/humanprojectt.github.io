@@ -30,7 +30,7 @@ flowchart LR
 - Colors, margins and target sizes come from the tokens in `global.css`.
 - Each view has one primary button. Use `variant="quiet"` for the others.
 - Interactive targets are at least 44 px.
-- Do not redraw the logo: use the original file once it arrives.
+- Do not redraw the logo. `public/brand/hp-mark.webp` is a crop of Yera's original file; `site.logo.approved` blocks publishing until Yera validates it.
 - Use real photos of Yera only. Mockups and sample figures are never content.
 
 ## Pending items
