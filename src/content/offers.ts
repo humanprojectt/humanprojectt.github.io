@@ -9,6 +9,9 @@ export interface Offer {
   title: string;
   description: string;
   items?: string[];
+  // Prepared destination only. Not rendered or activated by the current offer component.
+  // Launch approvals and purchase/delivery verification are still required.
+  purchaseUrl?: string;
 }
 
 export const statusLabels: Record<OfferStatus, string> = {
@@ -31,6 +34,7 @@ export const offers: Offer[] = [
   {
     id: "formacion",
     status: "soon",
+    purchaseUrl: "https://payhip.com/b/1LckD",
     title: "Formación",
     description: "Cinco vídeos formativos:",
     items: [
@@ -44,6 +48,7 @@ export const offers: Offer[] = [
   {
     id: "manual",
     status: "soon",
+    purchaseUrl: "https://payhip.com/b/Pk6uS",
     title: "Manual",
     description: "El método por escrito, en primera persona y centrado en Instagram:",
     items: ["Guiones", "Ejercicios", "Plantillas", "Plan de 90 días"],

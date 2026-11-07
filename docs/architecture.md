@@ -48,6 +48,18 @@ Anything unfinished renders with a `data-pending` attribute. `pnpm check:publish
 | Editing without code (CMS) | Replace the imports from `src/content/` with data from the CMS, using the same shapes | Components |
 | Payments | Move to a host with server support, add an Astro adapter and server endpoints | Pages and components |
 
+## Prepared product destinations (inactive)
+
+`offers.ts` holds the supplied Payhip destinations in optional `purchaseUrl` fields. The offer component does not render those fields, and both products remain `soon`. Changing a status to `available` still shows a contact button, not a purchase button.
+
+Product visibility and a connected payment provider do not prove a successful purchase or delivery. Before implementing purchase buttons or launching:
+
+- Obtain approval for the logo, contact CTA and legally reviewed owner/privacy information. Keep private identity and address evidence out of this public repository.
+- Confirm a suitable hosting destination (see below).
+- Verify purchase and delivery for each product with the owner's authorization, keeping transaction evidence private.
+- On an authorized remote builder, run `pnpm verify`, then `pnpm build && pnpm check:publish`. Resolve every publication blocker without weakening the check.
+- Inspect the generated preview HTML: no Payhip purchase links should appear while these destinations are inactive. After a separately approved activation, verify each button points to its matching product.
+
 ## Hosting
 
 `.github/workflows/deploy.yml` deploys every push to `main`, unless the tests or the content check fail. It runs the check in preview mode: for a real launch, remove `--preview` so that pending items block the deploy.
