@@ -21,9 +21,14 @@ export const method = {
 
 export const about = {
   title: "Una marca con persona detrás.",
-  text: "Human Proyect es la marca de estrategia de contenido y posicionamiento digital de Yera. Comunicación de humano a humano, personalidad de marca y diferenciación, lejos de la agencia genérica.",
-  // Set to null once the real biography and photo are in place.
-  pending: "biografía y foto real de Yera" as string | null,
+  // Yera's own presentation, supplied for the preview. One string per paragraph.
+  paragraphs: [
+    "Soy Yera, creador de contenido y la persona detrás de Human Proyect. Me dedico a encontrar eso que tú ves tan normal en tu trabajo, pero que puede hacer que alguien se pare, te escuche y quiera conocerte.",
+    "Ayudo a negocios, marcas y creadores que tienen mucho que ofrecer, pero les cuesta mostrarlo en redes. Juntos damos forma a su mensaje y creamos contenido con personalidad: que suene a ellos, conecte con las personas adecuadas y les dé motivos para confiar y comprar.",
+    "Quiero que se note quién está detrás de lo que publicas. Porque no necesitas ser perfecto, necesitas ser tú.",
+  ],
+  // Set to null once a real photo is in place.
+  pending: "foto real de Yera" as string | null,
 };
 
 export const faq = {

@@ -4,13 +4,19 @@ import { about } from "../../content/home";
 
 <section class="section offset" id="yera" aria-labelledby="yera-titulo">
   <h2 id="yera-titulo">{about.title}</h2>
-  <p class="about-text" data-pending={about.pending ?? undefined}>{about.text}</p>
+  <div class="about-text" data-pending={about.pending ?? undefined}>
+    {about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+  </div>
 </section>
 
 <style>
   .about-text {
     max-width: 44ch;
     margin-top: 2rem;
+  }
+
+  .about-text p + p {
+    margin-top: 1rem;
   }
 
   /* Pushed off the left edge to break the rhythm */

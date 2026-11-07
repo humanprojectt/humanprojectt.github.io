@@ -11,7 +11,7 @@ export const legal = {
     { label: "Nombre o razón social", value: null as string | null },
     { label: "NIF", value: null as string | null },
     { label: "Domicilio", value: null as string | null },
-    { label: "Correo electrónico", value: null as string | null },
+    { label: "Correo electrónico", value: "yeraestratega@gmail.com" as string | null },
   ],
 
   sections: [

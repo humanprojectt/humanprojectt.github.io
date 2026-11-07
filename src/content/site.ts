@@ -21,7 +21,7 @@ export const site = {
     label: "Hablar con Yera",
     // Where every contact button leads, for example an Instagram profile.
     // While null, buttons stay on the page and publishing is blocked.
-    url: null as string | null,
+    url: "https://www.instagram.com/yera_estratega/" as string | null,
   },
 } as const;
 
